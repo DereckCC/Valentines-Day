@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>♥</title>
+	<style>
+		body {
+			background-color: beige;
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			overflow: hidden;
+			font-family: 'Georgia', fantasy;
+		}
+		.center-text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			color: black;
+			font-size: 69px;
+			z-index: 2;
+		}
+		.heart {
+			position: absolute;
+			animation: move 13s infinite linear; /* Agregamos la animación de movimiento aleatorio */
+		}
+		.red {
+			color: red;
+		}
+		.pink {
+			color: pink;
+		}
+		.purple {
+			color: #ffb8b8;
+		}
+		@keyframes move {
+			0% {
+				transform: translate(0, 0);
+			}
+			25% {
+				transform: translate(50px, 50px);
+			}
+			50% {
+				transform: translate(-50px, 50px);
+			}
+			75% {
+				transform: translate(50px, -50px);
+			}
+			100% {
+				transform: translate(-50px, -50px);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="center-text" id="romanticText"></div>
+	<script>
+		function createHeart(color, top, left, fontSize) {
+			var heart = document.createElement("div");
+			heart.className = "heart " + color;
+			heart.style.top = top + "px";
+			heart.style.left = left + "px";
+			heart.style.fontSize = fontSize + "px";
+			heart.innerHTML = "♥";
+			document.body.appendChild(heart);
+		}
+
+		function generateHearts() {
+			var numHearts = 250;
+			for (var i = 0; i < numHearts; i++) {
+				var color = ["red", "pink", "purple"][Math.floor(Math.random() * 3)];
+				var top = Math.random() * window.innerHeight;
+				var left = Math.random() * window.innerWidth;
+				var fontSize = Math.random() * 70 + 10;
+				createHeart(color, top, left, fontSize);
+			}
+		}
+
+		generateHearts();
+
+		var romanticText = "Nos conocimos por una coincidencia, quién diría que serías lo mejor que me ha pasado, eres por quién vivo y suspiro cada día, Mi Niña, Mi Preciosa, Mi Todo, TE AMO ♥";
+		var textElement = document.getElementById("romanticText");
+		var index = 0;
+
+		function showText() {
+			textElement.innerHTML += romanticText[index];
+			index++;
+
+			if (index < romanticText.length) {
+				setTimeout(showText, 100);
+			}
+		}
+
+		setTimeout(showText, 2000);
+	</script>
+</body>
+</html>
